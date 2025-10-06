@@ -1,13 +1,8 @@
 import curses
 
-def main(stdscr):
-    curses.curs_set(0)  # hide cursor in normal mode
-    stdscr.clear()
-    stdscr.addstr(0, 0, "Normal mode. Press ':' to enter command mode. Type ':q!' to quit.")
-    stdscr.refresh()
-
-    command_mode = False
+def vim_puzzles_start(stdscr):
     command_buffer = ""
+    command_mode = False
 
     height, width = stdscr.getmaxyx()
 
@@ -24,6 +19,7 @@ def main(stdscr):
                 stdscr.move(height - 1, 0)
                 stdscr.clrtoeol()
                 stdscr.refresh()
+                continue
 
             elif ch in (10, 13):  # Enter key
                 # Execute command
@@ -79,5 +75,3 @@ def main(stdscr):
                 stdscr.addstr(height - 1, 0, ":")
                 stdscr.refresh()
             # You can add more normal mode key handling here if needed
-
-curses.wrapper(main)
