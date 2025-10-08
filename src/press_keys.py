@@ -1,8 +1,14 @@
 import sys
 from window import Window, left, right
+from buffer import Buffer
+from cursor import Cursor
 
-
-def press_keys(window, buffer, cursor, key_pressed):
+def press_key_logic(
+        window: Window, 
+        buffer: Buffer, 
+        cursor: Cursor, 
+        key_pressed: str
+    ) -> None:
     # Exit program if 'q' is pressed. Need to implement a save function later.
         if key_pressed == "q":
             sys.exit(0)
