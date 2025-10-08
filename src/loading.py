@@ -1,0 +1,22 @@
+import curses
+import sys
+from CONSTANTS import MAIN_MENU_FILE
+from buffer import Buffer
+
+def load_buffer_into_window(buffer, window, cursor, stdscr): 
+    for row, line in enumerate(buffer[window.row:window.row + window.n_rows]):
+            # Add indicators ('<<' or '>>') to show that there is more text off-screen.
+            if row == cursor.row - window.row and window.col > 0:
+                line = "«" + line[window.col + 1:]
+            if len(line) > window.n_cols:
+                line = line[:window.n_cols - 1] + "»"
+
+            stdscr.addstr(row, 0, line)
+    # print(f"Hello world") # Debugging line to check if function is being called.
+
+def load_file_into_buffer(filename = MAIN_MENU_FILE):
+    buffer = None
+    with open(file=filename) as file:
+        # The contents of the file are stored in-memory until they’re ready to be rewritten into a file, hence the name 'buffer'.
+        buffer = Buffer(file.read().splitlines())
+    return buffer

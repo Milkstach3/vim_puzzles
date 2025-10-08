@@ -16,8 +16,8 @@ def vim_puzzles_start(stdscr):
                 command_mode = False
                 command_buffer = ""
                 curses.curs_set(0)
-                stdscr.move(height - 1, 0)
-                stdscr.clrtoeol()
+                stdscr.move(height - 1, 0) # move to bottom line
+                stdscr.clrtoeol() # erase everything on the line to the right of the cursor
                 stdscr.refresh()
                 continue
 
@@ -75,3 +75,8 @@ def vim_puzzles_start(stdscr):
                 stdscr.addstr(height - 1, 0, ":")
                 stdscr.refresh()
             # You can add more normal mode key handling here if needed
+            elif ch.isalpha():
+                stdscr.addstr(0, 0, f"{chr(ch)}")
+            else:
+                # Ignore other keys in normal mode for now
+                pass
