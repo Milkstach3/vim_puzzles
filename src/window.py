@@ -1,4 +1,4 @@
-
+# Tutorial: https://wasimlorgat.com/posts/editor.html
 
 # Window class sets dimensions for the size of the window to avoid the error "_curses.error: addwstr() returned ERR" for especially large windows.
 class Window:

@@ -66,7 +66,7 @@ def vim_puzzles_start(stdscr):
         # Normal mode behavior
         else:
             if ch == ord(':'):
-                # Enter command mode
+                # Enter COLON mode
                 command_mode = True
                 command_buffer = ""
                 curses.curs_set(1)  # show cursor in command mode

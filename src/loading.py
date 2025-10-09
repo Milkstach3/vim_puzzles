@@ -1,6 +1,6 @@
 import curses
 import sys
-from CONSTANTS import MAIN_MENU_FILE
+from CONSTANTS import START_MENU_FILE
 from buffer import Buffer
 
 def load_buffer_into_window(buffer, window, cursor, curses_window): 
@@ -12,9 +12,8 @@ def load_buffer_into_window(buffer, window, cursor, curses_window):
                 line = line[:window.n_cols - 1] + "»"
 
             curses_window.addstr(row, 0, line)
-    # print(f"Hello world") # Debugging line to check if function is being called.
 
-def load_file_into_buffer(filename = MAIN_MENU_FILE):
+def load_file_into_buffer(filename = START_MENU_FILE):
     buffer = None
     with open(file=filename) as file:
         # The contents of the file are stored in-memory until they’re ready to be rewritten into a file, hence the name 'buffer'.
