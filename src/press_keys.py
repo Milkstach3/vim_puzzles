@@ -4,27 +4,6 @@ from buffer import Buffer
 from cursor import Cursor
 from modes import Mode
 
-def movement_keys(
-        window: Window, 
-        buffer: Buffer, 
-        cursor: Cursor, 
-        key_pressed: str
-) -> None:
-    if key_pressed == "KEY_LEFT":
-        left(window, buffer, cursor)
-
-    if key_pressed == "KEY_DOWN":
-        cursor.down(buffer)
-        window.down(buffer, cursor)
-        window.horizontal_scroll(cursor)
-
-    if key_pressed == "KEY_UP":
-        cursor.up(buffer)
-        window.up(cursor)
-        window.horizontal_scroll(cursor)
-
-    if key_pressed == "KEY_RIGHT":
-        right(window, buffer, cursor)
 
 def press_key_logic(
         window: Window, 
@@ -32,13 +11,27 @@ def press_key_logic(
         cursor: Cursor, 
         key_pressed: str,
         command_buffer: str = ""
-    ) -> Mode:
+    ) -> None:
     
     # Movement keys
-    movement_keys(window, buffer, cursor, key_pressed)
+    if key_pressed == "KEY_LEFT":
+        left(window, buffer, cursor)
+
+    elif key_pressed == "KEY_DOWN":
+        cursor.down(buffer)
+        window.down(buffer, cursor)
+        window.horizontal_scroll(cursor)
+
+    elif key_pressed == "KEY_UP":
+        cursor.up(buffer)
+        window.up(cursor)
+        window.horizontal_scroll(cursor)
+
+    elif key_pressed == "KEY_RIGHT":
+        right(window, buffer, cursor)
 
     # Exit program if 'q' is pressed. Need to implement a save function later.
-    if key_pressed == "q":
+    elif key_pressed == "q":
         sys.exit(0)
 
     # Insert a new line when enter is pressed.
@@ -61,6 +54,6 @@ def press_key_logic(
         buffer.insert(cursor, key_pressed)
         for _ in key_pressed:
             right(window, buffer, cursor)
-        return Mode.INSERT
+        # return Mode.INSERT
     
-    return Mode.PARSE
+    # return Mode.PARSE
